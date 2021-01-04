@@ -4,7 +4,7 @@
  * Application Starting Point
  * --------------------------------------------------------------------------
  */
-
+require("dotenv").config();
 var app = require("../bootstrap/app");
 var debug = require("debug")("test:server");
 var http = require("http");

@@ -16,7 +16,7 @@ app.set("view engine", "hbs");
 
 /**
  * --------------------------------------------------------------------------
- * Middlewares
+ * Setup middlewares
  * --------------------------------------------------------------------------
  */
 
@@ -33,14 +33,18 @@ app.use(express.static(path.join(__dirname, "public")));
  * --------------------------------------------------------------------------
  */
 
-var WebRoutes = require("../routes/web");
-var AdminRoutes = require("../routes/admin");
-var ApiRoutes = require("../routes/api");
+app.use("/", function (req, res) {
+  res.send(process.env.DB_HOST);
+});
+// app.use("/", require("../routes/web"));
+app.use("/admin", require("../routes/admin"));
+app.use("/api", require("../routes/api"));
 
-app.use("/", WebRoutes);
-app.use("/admin", AdminRoutes);
-app.use("/api", ApiRoutes);
-// catch 404 and forward to error handler
+/**
+ * --------------------------------------------------------------------------
+ * catch 404 and forward to error handler
+ * --------------------------------------------------------------------------
+ */
 app.use(function (req, res, next) {
   next(createError(404));
 });
