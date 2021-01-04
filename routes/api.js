@@ -1,9 +1,8 @@
-var ApiHomeController = require("../app/http/controllers/api/HomeController");
+var UserController = require("../app/http/controllers/api/UserController");
 var express = require("express");
 var router = express.Router();
 
-router.get("/home", ApiHomeController.home);
-router.get("/dashboard", ApiHomeController.dashboard);
-router.get("/", ApiHomeController.home);
+router.get("/getAll", UserController.getAll);
+router.get("/getOne", UserController.getOne);
 
 module.exports = router;
