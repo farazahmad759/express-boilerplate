@@ -11,14 +11,13 @@ var app = express();
  * Load config
  * --------------------------------------------------------------------------
  */
-let config = require("./../config/config");
-
+let config = require("../config/_index");
 /**
  * --------------------------------------------------------------------------
  * Setup View Engine
  * --------------------------------------------------------------------------
  */
-app.set("views", path.join(__dirname, "resources/views"));
+app.set("views", config.get("view.paths"));
 app.set("view engine", "hbs");
 
 /**
@@ -41,7 +40,7 @@ app.use(express.static(path.join(__dirname, "public")));
  */
 
 app.use("/", function (req, res) {
-  res.send(process.env.DB_HOST);
+  res.render("index");
 });
 // app.use("/", require("../routes/web"));
 app.use("/admin", require("../routes/admin"));

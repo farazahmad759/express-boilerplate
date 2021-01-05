@@ -1,3 +1,4 @@
+var path = require("path");
 let _exports = {
   /*
     |--------------------------------------------------------------------------
@@ -10,9 +11,10 @@ let _exports = {
     |
     */
 
-  paths: {
-    resource_path: "resource_path('views')",
-  },
+  paths: [
+    //
+    path.join(__dirname, "../resources/views"),
+  ],
 
   /*
 |--------------------------------------------------------------------------

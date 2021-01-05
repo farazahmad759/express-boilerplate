@@ -12,6 +12,14 @@ let _exports = {
 
   /**
    * --------------------------------------------------------------------------
+   * Application PORT
+   * --------------------------------------------------------------------------
+   * The PORT at which the app will run
+   *
+   */
+  port: process.env.APP_PORT ? process.env.APP_PORT : "3000",
+  /**
+   * --------------------------------------------------------------------------
    * Application Environment
    * --------------------------------------------------------------------------
    * This value determines the "environment" your application is currently
@@ -105,3 +113,5 @@ let _exports = {
      */
   ],
 };
+
+module.exports = _exports;

@@ -5,6 +5,7 @@
  * --------------------------------------------------------------------------
  */
 require("dotenv").config();
+let config = require("./../config/_index");
 var app = require("../bootstrap/app");
 var debug = require("debug")("test:server");
 var http = require("http");
@@ -15,7 +16,7 @@ var http = require("http");
  * --------------------------------------------------------------------------
  */
 
-var port = normalizePort(process.env.PORT || "3000");
+var port = config.get("app.port");
 app.set("port", port);
 
 /**
