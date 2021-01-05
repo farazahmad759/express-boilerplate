@@ -8,7 +8,7 @@ let _exports = {
    * any other location as required by the application or its packages.
    *
    */
-  name: process.env.APP_NAME ? process.env.APP_NAME : "Dricup",
+  name: process.env.APP_NAME ? process.env.APP_NAME : "Dricup App",
 
   /**
    * --------------------------------------------------------------------------
@@ -19,7 +19,7 @@ let _exports = {
    * services the application utilizes. Set this in your ".env" file.
    *
    */
-  env: process.env.APP_ENV ? process.env.APP_ENV : "Dricup",
+  env: process.env.APP_ENV ? process.env.APP_ENV : "production",
   /**
    * --------------------------------------------------------------------------
    * Application Debug Mode
@@ -74,4 +74,34 @@ let _exports = {
    *
    */
   fallback_locale: "en",
+
+  /**
+   * --------------------------------------------------------------------------
+   * Encryption Key
+   * --------------------------------------------------------------------------
+   * This key is used by the Illuminate encrypter service and should be set
+   * to a random, 32 character string, otherwise these encrypted strings
+   * will not be safe. Please do this before deploying an application!
+   *
+   */
+  key: process.env.APP_KEY ? process.env.APP_KEY : null,
+  cipher: "AES-256-CBC",
+
+  /**
+   * --------------------------------------------------------------------------
+   * Autoloaded Service Providers
+   * --------------------------------------------------------------------------
+   * The service providers listed here will be automatically loaded on the
+   * request to your application. Feel free to add your own services to
+   * this array to grant expanded functionality to your applications.
+   *
+   */
+  providers: [
+    /**
+     * Dricup framework Service Providers
+     */
+    /**
+     * Package Service Providers
+     */
+  ],
 };
