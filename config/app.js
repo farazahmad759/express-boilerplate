@@ -108,6 +108,10 @@ let _exports = {
     /**
      * Dricup framework Service Providers
      */
+    require("./../app/providers/RouteServiceProvider"),
+    /*
+     * Package Service Providers...
+     */
     /**
      * Package Service Providers
      */

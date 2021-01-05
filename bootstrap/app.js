@@ -35,16 +35,18 @@ app.use(express.static(path.join(__dirname, "public")));
 
 /**
  * --------------------------------------------------------------------------
- * Register routes
+ * Register Service Providers
  * --------------------------------------------------------------------------
  */
 
-app.use("/", function (req, res) {
-  res.render("index");
+let _providers = config.get("app.providers");
+_providers.forEach((_provider) => {
+  _provider.boot(app);
 });
-// app.use("/", require("../routes/web"));
-app.use("/admin", require("../routes/admin"));
-app.use("/api", require("../routes/api"));
+
+// app.use("/", function (req, res) {
+//   res.render("index");
+// });
 
 /**
  * --------------------------------------------------------------------------

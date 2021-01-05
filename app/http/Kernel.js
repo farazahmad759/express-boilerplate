@@ -25,6 +25,7 @@ let _exports = {
     api: [
       //
       require("./middlewares/authenticate"),
+      require("./middlewares/user"),
     ],
   },
 
