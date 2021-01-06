@@ -1,3 +1,4 @@
+var appRoot = require("app-root-path");
 let _exports = {
   /**
    * --------------------------------------------------------------------------
@@ -95,6 +96,17 @@ let _exports = {
   key: process.env.APP_KEY ? process.env.APP_KEY : null,
   cipher: "AES-256-CBC",
 
+  /**
+   * --------------------------------------------------------------------------
+   * Useful Paths
+   * --------------------------------------------------------------------------
+   * Commonly used paths in the project
+   */
+  directory_paths: {
+    resources: appRoot + "/resources",
+    public: appRoot + "/public",
+    node_modules: appRoot + "/node_modules",
+  },
   /**
    * --------------------------------------------------------------------------
    * Autoloaded Service Providers

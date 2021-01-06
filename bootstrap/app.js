@@ -12,6 +12,7 @@ var app = express();
  * --------------------------------------------------------------------------
  */
 let config = require("../config/_index");
+let appPaths = config.get("app.directory_paths");
 /**
  * --------------------------------------------------------------------------
  * Setup View Engine
@@ -31,8 +32,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
-
+app.use(express.static(appPaths.public));
 /**
  * --------------------------------------------------------------------------
  * Register Service Providers
@@ -44,9 +44,10 @@ _providers.forEach((_provider) => {
   _provider.boot(app);
 });
 
-// app.use("/", function (req, res) {
-//   res.render("index");
-// });
+app.use("/404", function (req, res) {
+  res.sendFile(appPaths.public + "/404.html");
+  // res.render("index");
+});
 
 /**
  * --------------------------------------------------------------------------
@@ -61,11 +62,13 @@ app.use(function (req, res, next) {
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
+  console.log(req.app.get("env"));
   res.locals.error = req.app.get("env") === "development" ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  res.render("error");
+  res.send(err);
+  // res.render("error");
 });
 
 module.exports = app;
