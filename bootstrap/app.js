@@ -14,7 +14,7 @@ var app = express();
  */
 let config = require(appRoot + "/config/_index");
 app.set("config", config);
-
+let appPaths = app.get("config").get("paths");
 /**
  * --------------------------------------------------------------------------
  * Setup View Engine
@@ -34,26 +34,21 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(app.get("config").get("paths.public")));
 /**
  * --------------------------------------------------------------------------
  * Register Service Providers
  * --------------------------------------------------------------------------
  */
 
-// console.log(appRoot);
 let _providers = app.get("config").get("app.providers");
-// for (let i = 0; i < _providers.length; i++) {
-//   _providers[i].boot(app);
-// }
 _providers.forEach((_provider) => {
-  _provider.boot(app);
+  _provider.boot(app, express);
 });
 
 app.use("/404", function (req, res) {
-  // console.log("from route", appRoot);
-  res.sendFile(appPaths.public + "/404.html");
-  // res.render("index");
+  let filePath = "dd";
+  filePath = appPaths.node_modules + "/http-error-pages/404.html";
+  res.sendFile(filePath);
 });
 
 /**

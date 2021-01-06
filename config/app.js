@@ -108,6 +108,8 @@ let _exports = {
     /**
      * Dricup framework Service Providers
      */
+    require("./../app/providers/ConfigServiceProvider"), // ConfigServiceProvider should be at index 0
+    require("./../app/providers/FileSystemServiceProvider"), // ConfigServiceProvider should be at index 1
     require("./../app/providers/RouteServiceProvider"),
     /*
      * Package Service Providers...

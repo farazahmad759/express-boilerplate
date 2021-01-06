@@ -7,6 +7,7 @@ let _exports = {
   routes: appRoot + "/routes",
   models: appRoot + "/models",
   providers: appRoot + "/providers",
+  node_modules: appRoot + "/node_modules",
 };
 
 module.exports = _exports;
