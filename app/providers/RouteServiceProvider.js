@@ -1,3 +1,7 @@
+var appRoot = require("app-root-path");
+
+// console.log("from routeserviceprovider ===", appRoot);
+
 let _middlewares = require("./../http/Kernel");
 let RouteServiceProvider = {
   HOME: "/home",
@@ -5,7 +9,7 @@ let RouteServiceProvider = {
     app.use(
       "/admin",
       _middlewares.middlewareGroups.admin,
-      require("../../routes/admin")
+      require(app.get("config").get("paths.routes") + "/admin")
     );
     app.use(
       "/api",

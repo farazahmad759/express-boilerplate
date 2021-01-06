@@ -1,3 +1,4 @@
+var appRoot = require("app-root-path");
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
@@ -11,14 +12,15 @@ var app = express();
  * Load config
  * --------------------------------------------------------------------------
  */
-let config = require("../config/_index");
-let appPaths = config.get("app.directory_paths");
+let config = require(appRoot + "/config/_index");
+app.set("config", config);
+
 /**
  * --------------------------------------------------------------------------
  * Setup View Engine
  * --------------------------------------------------------------------------
  */
-app.set("views", config.get("view.paths"));
+app.set("views", app.get("config").get("view.paths"));
 app.set("view engine", "hbs");
 
 /**
@@ -32,19 +34,24 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(appPaths.public));
+app.use(express.static(app.get("config").get("paths.public")));
 /**
  * --------------------------------------------------------------------------
  * Register Service Providers
  * --------------------------------------------------------------------------
  */
 
-let _providers = config.get("app.providers");
+// console.log(appRoot);
+let _providers = app.get("config").get("app.providers");
+// for (let i = 0; i < _providers.length; i++) {
+//   _providers[i].boot(app);
+// }
 _providers.forEach((_provider) => {
   _provider.boot(app);
 });
 
 app.use("/404", function (req, res) {
+  // console.log("from route", appRoot);
   res.sendFile(appPaths.public + "/404.html");
   // res.render("index");
 });

@@ -8,9 +8,9 @@ var config = convict({
   auth: require("./auth"),
   cors: require("./cors"),
   database: require("./database"),
+  paths: require("./paths"),
   view: require("./view"),
 });
-
 // Perform validation
 config.validate({ allowed: "strict" });
 
