@@ -12,7 +12,7 @@ var app = express();
  * Load config
  * --------------------------------------------------------------------------
  */
-let config = require(appRoot + "/config/_index");
+let config = require(appRoot + "/config");
 app.set("config", config);
 let appPaths = app.get("config").get("paths");
 /**
@@ -48,6 +48,7 @@ _providers.forEach((_provider) => {
 app.use("/404", function (req, res) {
   let filePath = "dd";
   filePath = appPaths.node_modules + "/http-error-pages/404.html";
+  filePath = path.resolve("node_modules/http-error-pages/404.html");
   res.sendFile(filePath);
 });
 

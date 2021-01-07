@@ -1,11 +1,11 @@
 #!/usr/bin/env node
+require("dotenv").config();
 /**
  * --------------------------------------------------------------------------
  * Application Starting Point
  * --------------------------------------------------------------------------
  */
-require("dotenv").config();
-let config = require("./../config/_index");
+let config = require("../config");
 var app = require("../bootstrap/app");
 var debug = require("debug")("test:server");
 var http = require("http");
